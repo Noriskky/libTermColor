@@ -58,6 +58,8 @@ namespace colors {
     const ColorAttributes& CYAN = color_map.at("cyan");
     const ColorAttributes& WHITE = color_map.at("white");
 
+    const char* RESET = "\033[0m";
+
     inline const char* getColorCode(const std::string& color, const std::string& variation) {
         std::string colorLower = color;
         std::transform(colorLower.begin(), colorLower.end(), colorLower.begin(), ::tolower);
@@ -78,11 +80,11 @@ namespace colors {
         return getColorCode(colors[0], colors[1]);
     }
 
-    inline const char * hexToColor(const std::string& hexCode) {
+    inline const ColorAttributes hexToColor(const std::string& hexCode) {
         // Check if the hex code has a valid format
         if (hexCode.size() != 7 || hexCode[0] != '#') {
             // Invalid format
-            return "";
+            return WHITE;
         }
 
         // Extract RGB components from the hex code
@@ -104,9 +106,14 @@ namespace colors {
             "0;37"   // White
         };
 
-        // Convert RGB to terminal color code
-        std::ostringstream colorStream;
-        colorStream << "\033[" << palette[paletteIndex] << "m";
-        return utils::stringToChar(colorStream.str());
+        // Create a ColorAttributes struct
+        ColorAttributes colorAttrs;
+        colorAttrs.reset = "\033[0m";
+        colorAttrs.regular = ("\033[" + std::string(palette[paletteIndex]) + "m").c_str();
+        colorAttrs.bold = ("\033[1;" + std::string(palette[paletteIndex]) + "m").c_str();
+        colorAttrs.underline = ("\033[4;" + std::string(palette[paletteIndex]) + "m").c_str(); // FIXME
+        colorAttrs.background = ("\033[4" + std::string(palette[paletteIndex]) + "m").c_str(); // FIXME
+
+        return colorAttrs;
     }
 }

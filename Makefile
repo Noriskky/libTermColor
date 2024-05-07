@@ -18,7 +18,7 @@ LFLAGS =
 OUTPUT := output
 
 # define source directory
-SRC := src
+SRC := example
 
 # define include directory
 INCLUDE := include
@@ -94,7 +94,3 @@ clean:
 run: all
 	./$(OUTPUTMAIN)
 	@echo Executing 'run: all' complete!
-
-# test rule
-test:
-	make && clear && ./output/main
