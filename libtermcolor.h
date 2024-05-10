@@ -7,27 +7,10 @@
 #include <string>
 #include <sstream>
 #include <vector>
-
-namespace utils {
-    inline std::vector<std::string> splitString(const std::string& input, char delimiter) {
-        std::vector<std::string> tokens;
-        std::string token;
-        std::istringstream tokenStream(input);
-        while (std::getline(tokenStream, token, delimiter)) {
-            tokens.push_back(token);
-        }
-        return tokens;
-    }
-
-    inline const char * stringToChar(const std::string& str) {
-        // Allocate memory on the heap for the char array
-        char * cstr = new char[str.length() + 1];
-        // Copy the string contents to the char array
-        std::strcpy(cstr, str.c_str());
-        // Return the pointer to the char array
-        return cstr;
-    }
-}
+#include <limits>
+#include <string>
+#include <map>
+#include <cmath>
 
 namespace colors {
     struct ColorAttributes {
@@ -39,14 +22,14 @@ namespace colors {
     };
 
     const std::map<std::string, ColorAttributes> color_map = {
-        {"black", {"\033[0m", "\033[0;30m", "\033[1;30m", "\033[4;30m", "\033[40m"}},
-        {"red", {"\033[0m", "\033[0;31m", "\033[1;31m", "\033[4;31m", "\033[41m"}},
-        {"green", {"\033[0m", "\033[0;32m", "\033[1;32m", "\033[4;32m", "\033[42m"}},
-        {"yellow", {"\033[0m", "\033[0;33m", "\033[1;33m", "\033[4;33m", "\033[43m"}},
-        {"blue", {"\033[0m", "\033[0;34m", "\033[1;34m", "\033[4;34m", "\033[44m"}},
-        {"magenta", {"\033[0m", "\033[0;35m", "\033[1;35m", "\033[4;35m", "\033[45m"}},
-        {"cyan", {"\033[0m", "\033[0;36m", "\033[1;36m", "\033[4;36m", "\033[46m"}},
-        {"white", {"\033[0m", "\033[0;37m", "\033[1;37m", "\033[4;37m", "\033[47m"}}
+            {"black", {"\033[0m", "\033[0;30m", "\033[1;30m", "\033[4;30m", "\033[40m"}},
+            {"red", {"\033[0m", "\033[0;31m", "\033[1;31m", "\033[4;31m", "\033[41m"}},
+            {"green", {"\033[0m", "\033[0;32m", "\033[1;32m", "\033[4;32m", "\033[42m"}},
+            {"yellow", {"\033[0m", "\033[0;33m", "\033[1;33m", "\033[4;33m", "\033[43m"}},
+            {"blue", {"\033[0m", "\033[0;34m", "\033[1;34m", "\033[4;34m", "\033[44m"}},
+            {"magenta", {"\033[0m", "\033[0;35m", "\033[1;35m", "\033[4;35m", "\033[45m"}},
+            {"cyan", {"\033[0m", "\033[0;36m", "\033[1;36m", "\033[4;36m", "\033[46m"}},
+            {"white", {"\033[0m", "\033[0;37m", "\033[1;37m", "\033[4;37m", "\033[47m"}}
     };
 
     const ColorAttributes& BLACK = color_map.at("black");
@@ -73,47 +56,5 @@ namespace colors {
             else if (variation == "background") return it->second.background;
         }
         return nullptr;
-    }
-
-    inline const char* getColorCodebyString(std::string color) {
-        std::vector<std::string> colors = utils::splitString(color, '-');
-        return getColorCode(colors[0], colors[1]);
-    }
-
-    inline const ColorAttributes hexToColor(const std::string& hexCode) {
-        // Check if the hex code has a valid format
-        if (hexCode.size() != 7 || hexCode[0] != '#') {
-            // Invalid format
-            return WHITE;
-        }
-
-        // Extract RGB components from the hex code
-        std::stringstream ss;
-        ss << std::hex << hexCode.substr(1); // Skip the '#'
-        int r, g, b;
-        ss >> r >> g >> b;
-
-        // Convert RGB to nearest 8-color palette
-        int paletteIndex = (r > 128) * 4 + (g > 128) * 2 + (b > 128);
-        static const char* palette[] = {
-            "0;30",  // Black
-            "0;34",  // Blue
-            "0;32",  // Green
-            "0;36",  // Cyan
-            "0;31",  // Red
-            "0;35",  // Purple
-            "0;33",  // Yellow
-            "0;37"   // White
-        };
-
-        // Create a ColorAttributes struct
-        ColorAttributes colorAttrs;
-        colorAttrs.reset = "\033[0m";
-        colorAttrs.regular = ("\033[" + std::string(palette[paletteIndex]) + "m").c_str();
-        colorAttrs.bold = ("\033[1;" + std::string(palette[paletteIndex]) + "m").c_str();
-        colorAttrs.underline = ("\033[4;" + std::string(palette[paletteIndex]) + "m").c_str(); // FIXME
-        colorAttrs.background = ("\033[4" + std::string(palette[paletteIndex]) + "m").c_str(); // FIXME
-
-        return colorAttrs;
     }
 }
