@@ -2,9 +2,12 @@
 #include "../libtermcolor.h"
 
 int main() {
-    std::cout << colors::GREEN.background << "Hello this is background a Example" << colors::RESET << "\n";
-    std::cout << colors::GREEN.bold << "Hello this is a bold Example" << colors::RESET << "\n";
-    std::cout << colors::GREEN.regular << "Hello this is a regular Example" << colors::RESET << "\n";
-    std::cout << colors::GREEN.underline << "Hello this is underlined a Example" << colors::RESET << "\n";
+    for (const auto& pair : colors::color_map) {
+        std::cout << pair.second.background << pair.first << colors::RESET << ":\n";
+        std::cout << colors::BLACK.background << "  Regular:    " << colors::RESET << pair.second.regular << pair.first << pair.second.reset << std::endl;
+        std::cout << colors::BLACK.background << "  Bold:       " << colors::RESET << pair.second.bold << pair.first << pair.second.reset << std::endl;
+        std::cout << colors::BLACK.background << "  Underline:  " << colors::RESET << pair.second.underline << pair.first << pair.second.reset << std::endl;
+        std::cout << colors::BLACK.background << "  Background: " << colors::RESET << pair.second.background << pair.first << pair.second.reset << std::endl;
+    }
     return 0;
 }
