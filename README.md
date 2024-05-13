@@ -53,6 +53,8 @@ colors::getColorCode("RED", "REGULAR")
 
 ## Example
 
+![Screenshot of Example](https://github.com/Noriskky/libTermColor/blob/main/screenshots/screenshots.jpeg?raw=true)
+
 I have written a quick example that will output every Color + It's states:
 ```c++
 #include <iostream>
