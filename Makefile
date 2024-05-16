@@ -94,3 +94,7 @@ clean:
 run: all
 	./$(OUTPUTMAIN)
 	@echo Executing 'run: all' complete!
+
+rust_build:
+	# Rust
+	cargo build

@@ -1,6 +1,6 @@
-#include <map>
 #include <string>
 #include <algorithm> // For std::tolower
+#include <map>
 #include <vector>
 #include <cstring>
 #include <iostream>
@@ -9,7 +9,6 @@
 #include <vector>
 #include <limits>
 #include <string>
-#include <map>
 #include <cmath>
 
 namespace colors {

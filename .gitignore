@@ -39,3 +39,8 @@
 .idea
 main
 output
+
+
+# Added by cargo
+
+/target
