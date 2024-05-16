@@ -1,0 +1,11 @@
+[package]
+name = "example-rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+libtermcolor = { path = "../" }
+
+[[bin]]
+name = "example-rs"
+path = "main.rs"
