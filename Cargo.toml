@@ -1,0 +1,25 @@
+[package]
+name = "libtermcolor"
+version = "1.0.0"
+license = "GPLv3"
+repository = "https://github.com/Noriskky/libTermColor"
+description = "A simple Ansi Color Library for C/C++ and Rust"
+readme = "README.md"
+edition = "2021"
+keywords = []
+categories = []
+authors = [
+    "Noriskky <Noriskky44@proton.me>"
+]
+include = [
+    "src/libtermcolor.rs",
+    "Cargo.toml"
+]
+
+[dependencies]
+lazy_static = "1.4.0"
+
+[lib]
+path = "src/libtermcolor.rs"
+crate-type = ["lib"]
+name = "libtermcolor"
