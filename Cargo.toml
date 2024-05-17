@@ -1,7 +1,7 @@
 [package]
 name = "libtermcolor"
 version = "1.0.0"
-license = "GPLv3"
+license = "GPL-3.0-only"
 repository = "https://github.com/Noriskky/libTermColor"
 description = "A simple Ansi Color Library for C/C++ and Rust"
 readme = "README.md"
