@@ -44,3 +44,5 @@ output
 # Added by cargo
 
 /target
+
+*.lock
