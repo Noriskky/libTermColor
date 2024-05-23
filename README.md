@@ -91,7 +91,7 @@ libtermcolor::colors::get_color_code("RED", "REGULAR");
 ```
 
 >[!NOTE]
->This capitalization does not matter.
+>The capitalization does not matter.
 
 ## Example
 
