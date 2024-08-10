@@ -47,12 +47,12 @@ colors::RED.regular
 #### Rust
 
 ```rust
-use libtermcolor; <-- Import the Libary
+use libtermcolor::colors; <-- Import the Libary
 
-libtermcolor::colors::red().regular
-                       ^       ^
-                       |       |
-                     Color   TYPE
+colors::red().regular
+         ^       ^
+         |       |
+       Color   TYPE
 ```
 
 **Color**: This specifies what color you want to use as List can be found at `` #Colors`` or by typing ``colors::`` and pressing ``CTRL + SPACE`` in your code. <br>
