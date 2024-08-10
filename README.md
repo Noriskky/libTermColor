@@ -17,7 +17,7 @@ If you have it another location have to replace ``libtermcolor.h`` with your pat
 
 ### Rust:
 
-For just you have to add it the following in your ``Cargo.toml``:
+For Rust you have to add it the following in your ``Cargo.toml``:
 
 ```toml
 [dependencies]
